@@ -2,6 +2,18 @@
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message)
+@message
+
+@helper.form(action = routes.Application.addCustomer()) {
+<input name="firstName" placeholder="családi név">
+<input name="lastName" placeholder="keresztnév">
+<input name="email" placeholder="email cím">
+<input name="telephone" placeholder="telefonszám">
+<input type="date" name="birthday" placeholder="születési dátum">
+<input name="zip" placeholder="irányítószám">
+<input name="town" placeholder="város">
+<input name="address" placeholder="cím">
+<input type="submit">
+}
 
 }
