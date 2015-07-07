@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -11,17 +12,25 @@ import java.util.Date;
  */
 
 @Entity
-public class Customers extends Model{
+public class Customer extends Model{
 
     @Id
     public String id;
-
+    @Constraints.Required
     public String firstName;
+    @Constraints.Required
     public String lastName;
+    @Constraints.Required
+    @Constraints.Email
     public String email;
+    @Constraints.Required
     public String telephone;
+    @Constraints.Required
     public Date birthday;
+    @Constraints.Required
     public String zip;
+    @Constraints.Required
     public String town;
+    @Constraints.Required
     public String address;
 }

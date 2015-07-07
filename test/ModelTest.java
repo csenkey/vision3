@@ -1,4 +1,4 @@
-import models.Customers;
+import models.Customer;
 import org.junit.Test;
 
 import static play.test.Helpers.fakeApplication;
@@ -15,8 +15,8 @@ public class ModelTest {
         running(fakeApplication(), new Runnable() {
             @Override
             public void run() {
-                Customers customers = new Customers();
-                customers.fisrtName = "Istvan";
+                Customer customers = new Customer();
+                customers.firstName = "Istvan";
                 customers.lastName = "Csenkey-Sinko";
                 customers.save();
                 assertTrue(customers.id != null);

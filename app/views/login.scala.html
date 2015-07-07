@@ -1,0 +1,13 @@
+@(message: String)
+
+@main("Welcome to Play") {
+
+@message
+
+@helper.form(action = routes.Login.login()) {
+<input name="name" placeholder="user name">
+<input name="password" type="password">
+<input type="submit">
+}
+
+}

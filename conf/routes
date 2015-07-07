@@ -5,7 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index
 POST    /customer                   controllers.Application.addCustomer
-GET    /customer                    controllers.Application.getCustomers
+GET     /customer                   controllers.Application.getCustomers
+POST    /customer2                  controllers.Application.addCustomer2
+GET     /glass                      controllers.Application.getPrevGlasses
+POST    /login                      controllers.Login.login
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

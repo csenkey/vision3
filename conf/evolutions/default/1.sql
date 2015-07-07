@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table customers (
+create table customer (
   id                        varchar(255) not null,
   first_name                varchar(255),
   last_name                 varchar(255),
@@ -13,10 +13,18 @@ create table customers (
   zip                       varchar(255),
   town                      varchar(255),
   address                   varchar(255),
-  constraint pk_customers primary key (id))
+  constraint pk_customer primary key (id))
 ;
 
-create sequence customers_seq;
+create table previous_glass (
+  id                        varchar(255) not null,
+  name                      varchar(255),
+  constraint pk_previous_glass primary key (id))
+;
+
+create sequence customer_seq;
+
+create sequence previous_glass_seq;
 
 
 
@@ -25,9 +33,13 @@ create sequence customers_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists customers;
+drop table if exists customer;
+
+drop table if exists previous_glass;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists customers_seq;
+drop sequence if exists customer_seq;
+
+drop sequence if exists previous_glass_seq;
 
