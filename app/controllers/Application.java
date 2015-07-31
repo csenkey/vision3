@@ -1,15 +1,16 @@
 package controllers;
 
-import controllers.requests.LoginRequest;
 import models.Customer;
 import models.PreviousGlass;
+import models.User;
 import play.data.Form;
 import play.db.ebean.Model;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import views.html.index;
-import views.html.login;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static play.libs.Json.toJson;
@@ -18,16 +19,13 @@ import static play.libs.Json.toJson;
 
 public class Application extends Controller {
 
-    public static Result index() {
-        String user = session("connected");
-        if(user == null){
-            return ok(login.render(""));
-        } else {
-            return ok(index.render("Your new application is ready."));
-        }
+    @Security.Authenticated(Secured.class)
+    public Result index() {
+            return ok(index.render("Your new application is ready.", new User("Istvan", "", "Istvan KillerB")));
+
     }
 
-    public static Result addCustomer() {
+    public  Result addCustomer() {
         Form<Customer> form = Form.form(Customer.class).bindFromRequest();
         if (form.hasErrors()) {
             return badRequest("Bad request");
@@ -37,7 +35,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
     }
-    public static Result addCustomer2() {
+    public  Result addCustomer2() {
         Form<CRequest> form = Form.form(CRequest.class).bindFromRequest();
         if (form.hasErrors()) {
             return badRequest("Kiscica");
@@ -48,26 +46,33 @@ public class Application extends Controller {
             CRequest cRequest = form.get();
             customers.firstName = cRequest.firstName;
             customers.birthday = cRequest.birthday;
-            customers.save();
+
+
+
 
             PreviousGlass glass = new PreviousGlass();
             glass.name = "Nice";
-            glass.owner = customers;
 
-            glass.save();
 
+            customers.previousGlasses = Arrays.asList(glass);
+
+
+            //glass.save();
+            customers.save();
             return redirect(routes.Application.index());
         }
     }
 
-    public static Result getCustomers(){
+    public  Result getCustomers(){
         List<Customer> customers = new Model.Finder<String, Customer>(String.class, Customer.class).all();
         return ok(toJson(customers));
     }
 
-    public static Result getPrevGlasses(){
-        List<PreviousGlass> customers = new Model.Finder<String, PreviousGlass>(String.class, PreviousGlass.class).all();
-        return ok(toJson(new LoginRequest()));
-    }
+
+
+
+
+
+
 
 }

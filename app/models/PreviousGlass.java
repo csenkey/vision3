@@ -2,8 +2,7 @@ package models;
 
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -15,7 +14,6 @@ public class PreviousGlass extends Model{
 
     @Id
     public String id;
-    public Customer owner;
     public String name;
 
 

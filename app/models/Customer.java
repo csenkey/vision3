@@ -3,9 +3,9 @@ package models;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Istvan_Csenkey-Sinko on 7/6/2015.
@@ -33,4 +33,7 @@ public class Customer extends Model{
     public String town;
     @Constraints.Required
     public String address;
+
+    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    public List<PreviousGlass> previousGlasses;
 }

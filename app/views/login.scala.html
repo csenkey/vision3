@@ -1,13 +1,41 @@
-@(message: String)
+@(form: Form[Login.LoginForm])
 
-@main("Welcome to Play") {
+<html>
+<head>
+    <title>Zentasks</title>
+</head>
+<body>
+<header>
+    <a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
+</header>
 
-@message
 
-@helper.form(action = routes.Login.login()) {
-<input name="name" placeholder="user name">
-<input name="password" type="password">
-<input type="submit">
+@helper.form(action = routes.Login.authenticate()) {
+<h1>Sign in</h1>
+
+@if(form.hasGlobalErrors) {
+<p class="error">
+    @form.globalError.message
+</p>
 }
 
+@if(flash.contains("success")) {
+<p class="success">
+    @flash.get("success")
+</p>
 }
+<p>
+    <input name="username" placeholder="UserName">
+</p>
+
+<p>
+    <input type="password" name="password" placeholder="Password">
+</p>
+
+<p>
+    <button type="submit">Login</button>
+</p>
+}
+</body>
+
+</html>

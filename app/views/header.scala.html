@@ -1,0 +1,10 @@
+@(user : User)
+
+<header>
+    <dl id="user">
+        <dt>@user.name</dt>
+        <dd>
+            <a href="@routes.Login.logout()">Logout</a>
+        </dd>
+    </dl>
+</header>

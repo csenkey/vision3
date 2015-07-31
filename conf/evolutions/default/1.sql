@@ -18,6 +18,7 @@ create table customer (
 
 create table previous_glass (
   id                        varchar(255) not null,
+  customer_id               varchar(255) not null,
   name                      varchar(255),
   constraint pk_previous_glass primary key (id))
 ;
@@ -26,6 +27,8 @@ create sequence customer_seq;
 
 create sequence previous_glass_seq;
 
+alter table previous_glass add constraint fk_previous_glass_customer_1 foreign key (customer_id) references customer (id) on delete restrict on update restrict;
+create index ix_previous_glass_customer_1 on previous_glass (customer_id);
 
 
 
