@@ -1,10 +1,14 @@
 @(user : User)
 
-<header>
-    <dl id="user">
-        <dt>@user.name</dt>
-        <dd>
-            <a href="@routes.Login.logout()">Logout</a>
-        </dd>
-    </dl>
-</header>
+<div class="container" data-spy="affix" data-offset-top="200">
+    <table class="table">
+        <thead>
+            <tr><th><span class="glyphicon glyphicon-eye-open"></span>
+                <span>@user.store.name</span></th>
+            <th><span class="glyphicon glyphicon-user"></span>
+                <span>@user.name</span></th>
+            <th><span class="glyphicon glyphicon-log-out" >
+            <a href="@routes.Login.logout()">Kilépés</a></span></th></tr>
+        </thead>
+    </table>
+</div>

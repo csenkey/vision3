@@ -23,7 +23,6 @@ public class UserTest extends WithApplication{
         Store store = Store.create("Eszik optika").addUser(new User("bob@gmail.com","secret",  "Bob"));
         User bob = User.find.where().eq("username", "bob@gmail.com").findUnique();
         assertNotNull(bob);
-
         assertEquals("Bob", bob.name);
     }
 

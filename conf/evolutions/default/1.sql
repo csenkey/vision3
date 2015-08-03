@@ -34,7 +34,9 @@ create table user (
   username                  varchar(255) not null,
   password                  varchar(255),
   name                      varchar(255),
+  role                      integer,
   store_id                  varchar(255),
+  constraint ck_user_role check (role in (0,1,2)),
   constraint pk_user primary key (username))
 ;
 

@@ -1,0 +1,23 @@
+#Test data
+
+- &sasSzemOptika !!models.Store
+    name:           Sas Szem Optika
+
+
+- &retinaOptika !!models.Store
+    name:           Retina Optika
+
+
+- &istvan !!models.User
+    username:       istvan
+    password:       istvan
+    name:           Istvan KillerB
+    store:          *sasSzemOptika
+    role:           Physician
+
+- &janos !!models.User
+    username:       janos
+    password:       janos
+    name:           Nagy Jani
+    store:          *sasSzemOptika
+    role:           ShopAssistant

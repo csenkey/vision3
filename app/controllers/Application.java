@@ -1,14 +1,16 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
 import models.Customer;
 import models.PreviousGlass;
 import models.User;
 import play.data.Form;
 import play.db.ebean.Model;
+import play.libs.Yaml;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.index;
+import views.html.addcustomer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +23,8 @@ public class Application extends Controller {
 
     @Security.Authenticated(Secured.class)
     public Result index() {
-            return ok(index.render("Your new application is ready.", new User("Istvan", "", "Istvan KillerB")));
+
+            return ok(addcustomer.render("Your new application is ready.", User.find.byId(request().username())));
 
     }
 
@@ -66,6 +69,13 @@ public class Application extends Controller {
     public  Result getCustomers(){
         List<Customer> customers = new Model.Finder<String, Customer>(String.class, Customer.class).all();
         return ok(toJson(customers));
+    }
+
+
+    public Result init(){
+      //  Store store = Store.create("Eszik optika").addUser(new User("bob","secret",  "Bob"));
+        Ebean.save((List) Yaml.load("init-data.yml"));
+        return ok("init done");
     }
 
 
